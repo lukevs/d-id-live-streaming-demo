@@ -1,7 +1,13 @@
 'use strict';
 import DID_API from './api.json' assert { type: 'json' };
 
-if (DID_API.key == '🤫') alert('Please put your api key inside ./api.json and restart..');
+// if (DID_API.key == '🤫') alert('Please put your api key inside ./api.json and restart..');
+
+fetch('/api/getEnv')
+  .then(response => response.json())
+  .then(data => {
+    DID_API.key = data.apiKey
+  });
 
 const RTCPeerConnection = (
   window.RTCPeerConnection ||
